@@ -45,21 +45,21 @@ create table freshshop.users (
    last_name   varchar(255)             not null ,
    active      bool                      default true,
    inserted_at timestamp with time zone default current_timestamp ,
-   updated_at  timestamp with time zone not null     ,
+   updated_at  timestamp with time zone default current_timestamp ,
    constraint pk_users primary key (id)
 )   ;
 create table freshshop.roles (
    id          serial                   not null,
    name        varchar(255)             not null,
    inserted_at timestamp with time zone default current_timestamp ,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp ,
    constraint pk_roles primary key (id)
 )   ;
 create table freshshop.user_roles (
    user_id     integer                  not null,
    role_id     integer                  not null,
    inserted_at timestamp with time zone default current_timestamp ,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp ,
    constraint pk_user_roles primary key (user_id,role_id)
 )   ;
 create table freshshop.categories (
@@ -67,7 +67,7 @@ create table freshshop.categories (
    name        varchar(255)             not null,
    parent_id   integer                          ,
    inserted_at timestamp with time zone default current_timestamp ,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp ,
    constraint pk_categories primary key (id)
 )   ;
 create table freshshop.products (
@@ -81,14 +81,14 @@ create table freshshop.products (
    quantity          integer                   default 0    ,
    taxable           bool                      default false,
    inserted_at       timestamp with time zone default current_timestamp       ,
-   updated_at        timestamp with time zone not null      ,
+   updated_at        timestamp with time zone default current_timestamp       ,
    constraint pk_products primary key (id)
 )   ;
 create table freshshop.tags (
    id          serial                   not null,
    name        varchar(255)             not null,
    inserted_at timestamp with time zone default current_timestamp ,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp ,
    constraint pk_tags primary key (id)
 )   ;
 create table freshshop.sales_orders (
@@ -99,7 +99,7 @@ create table freshshop.sales_orders (
    session_id  varchar(255)             not null,
    user_id     integer                  not null,
    inserted_at timestamp with time zone default current_timestamp ,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp ,
    constraint pk_sales_orders primary key (id)
 )   ;
 create table freshshop.coupons (
@@ -112,14 +112,14 @@ create table freshshop.coupons (
    start_date  timestamp with time zone               ,
    end_date    timestamp with time zone               ,
    inserted_at timestamp with time zone default current_timestamp,
-   updated_at  timestamp with time zone not null      ,
+   updated_at  timestamp with time zone default current_timestamp,
    constraint pk_coupons primary key (id)
 )   ;
 create table freshshop.product_tags (
    product_id  integer                  not null,
    tag_id      integer                  not null,
    inserted_at timestamp with time zone default current_timestamp,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp,
    constraint pk_product_tags primary key (product_id,tag_id)
 )   ;
 create table freshshop.cc_transactions (
@@ -134,28 +134,28 @@ create table freshshop.cc_transactions (
    cc_type            varchar(255)                     ,
    response           text                             ,
    inserted_at        timestamp with time zone default current_timestamp,
-   updated_at         timestamp with time zone not null,
+   updated_at         timestamp with time zone default current_timestamp,
    constraint pk_cc_transactions primary key (id)
 )   ;
 create table freshshop.sessions (
    id          varchar(255)             not null,
    data        text                             ,
    inserted_at timestamp with time zone default current_timestamp,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp,
    constraint pk_sessions primary key (id)
 )   ;
 create table freshshop.product_statuses (
    id          serial                   not null,
    name        varchar(255)             not null,
    inserted_at timestamp with time zone default current_timestamp,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp,
    constraint pk_product_statuses primary key (id)
 )   ;
 create table freshshop.product_categories (
    category_id integer                  not null,
    product_id  integer                  not null,
    inserted_at timestamp with time zone default current_timestamp,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp,
    constraint pk_product_categories primary key (category_id,product_id)
 )   ;
 create table freshshop.order_products (
@@ -168,7 +168,7 @@ create table freshshop.order_products (
    quantity    integer                  not null,
    subtotal    numeric                  not null,
    inserted_at timestamp with time zone default current_timestamp,
-   updated_at  timestamp with time zone not null,
+   updated_at  timestamp with time zone default current_timestamp,
    constraint pk_order_products primary key (id)
 )   ;
 

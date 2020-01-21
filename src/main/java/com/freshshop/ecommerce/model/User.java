@@ -1,15 +1,20 @@
 package com.freshshop.ecommerce.model;
 
-import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name = "users", schema="freshshop")
+@Table(name = "users", schema = "freshshop")
 class User {
 
     @Id
@@ -28,8 +33,11 @@ class User {
     @Column(name = "active")
     private boolean active = true;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    @ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", schema = "freshshop",
+			    joinColumns = @JoinColumn(name = "user_id"), 
+			    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -107,15 +115,6 @@ class User {
     public User active(boolean active) {
         this.active = active;
         return this;
-    }
-
-    
-    public LocalDateTime getUpdatedAt() {
-        return this.updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     @Override
