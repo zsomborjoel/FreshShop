@@ -1,10 +1,15 @@
 package com.freshshop.ecommerce.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "products", schema = "freshshop")
 class Product {
     
     @Id
@@ -38,12 +43,11 @@ class Product {
     public Product() {
     }
 
-    public Product(Long id, String sku, String name, String description, ProductStatus productStatus, BigDecimal regularPrice, BigDecimal discountPrice, Integer quantity, boolean taxable) {
+    public Product(Long id, String sku, String name, String description, BigDecimal regularPrice, BigDecimal discountPrice, Integer quantity, boolean taxable) {
         this.id = id;
         this.sku = sku;
         this.name = name;
         this.description = description;
-        this.productStatus = productStatus;
         this.regularPrice = regularPrice;
         this.discountPrice = discountPrice;
         this.quantity = quantity;
