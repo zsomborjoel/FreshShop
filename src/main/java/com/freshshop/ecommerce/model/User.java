@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "users", schema = "freshshop")
-class User {
+public class User {
 
     @Id
     @Column(name = "id")
@@ -31,7 +31,7 @@ class User {
     private String lastName;
 
     @Column(name = "active")
-    private boolean active = true;
+    private boolean active;
 
     @ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", schema = "freshshop",

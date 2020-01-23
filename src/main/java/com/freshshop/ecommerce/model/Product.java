@@ -1,16 +1,22 @@
 package com.freshshop.ecommerce.model;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "products", schema = "freshshop")
-class Product {
+public class Product {
     
     @Id
     @Column(name = "id")
@@ -39,6 +45,19 @@ class Product {
 
     @Column(name = "id")
     private boolean taxable;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "product_categories", schema = "freshshop",
+                joinColumns = @JoinColumn(name = "product_id"),
+                inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "product_tags", schema = "freshshop",
+                joinColumns = @JoinColumn(name = "product_id"),
+                inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> tags = new HashSet<>();
+
 
     public Product() {
     }

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product_statuses", schema = "freshshop")
-class ProductStatus {
+public class ProductStatus {
 
     @Id
     @Column(name = "id")

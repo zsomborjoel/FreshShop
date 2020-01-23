@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "roles", schema = "freshshop")
-public class Role {
+@Table(name = "categories", schema = "freshshop")
+public class Category {
 
     @Id
     @Column(name = "id")
@@ -18,12 +18,16 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    public Role() {
+    @Column(name = "parent_id")
+    private Long parentId;
+
+    public Category() {
     }
 
-    public Role(Long id, String name) {
+    public Category(Long id, String name, Long parentId) {
         this.id = id;
         this.name = name;
+        this.parentId = parentId;
     }
 
     public Long getId() {
@@ -42,13 +46,26 @@ public class Role {
         this.name = name;
     }
 
-    public Role id(Long id) {
+    public Long getParentId() {
+        return this.parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public Category id(Long id) {
         this.id = id;
         return this;
     }
 
-    public Role name(String name) {
+    public Category name(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Category parentId(Long parentId) {
+        this.parentId = parentId;
         return this;
     }
 
@@ -56,16 +73,16 @@ public class Role {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof Role)) {
+        if (!(o instanceof Category)) {
             return false;
         }
-        Role role = (Role) o;
-        return Objects.equals(id, role.id) && Objects.equals(name, role.name);
+        Category category = (Category) o;
+        return Objects.equals(id, category.id) && Objects.equals(name, category.name) && Objects.equals(parentId, category.parentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, parentId);
     }
 
     @Override
@@ -73,6 +90,8 @@ public class Role {
         return "{" +
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
+            ", parentId='" + getParentId() + "'" +
             "}";
     }
+    
 }

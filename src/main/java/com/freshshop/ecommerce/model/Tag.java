@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "roles", schema = "freshshop")
-public class Role {
+@Table(name = "tags", schema = "freshshop")
+public class Tag {
 
     @Id
     @Column(name = "id")
@@ -18,10 +18,10 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    public Role() {
+    public Tag() {
     }
 
-    public Role(Long id, String name) {
+    public Tag(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -42,12 +42,12 @@ public class Role {
         this.name = name;
     }
 
-    public Role id(Long id) {
+    public Tag id(Long id) {
         this.id = id;
         return this;
     }
 
-    public Role name(String name) {
+    public Tag name(String name) {
         this.name = name;
         return this;
     }
@@ -56,11 +56,11 @@ public class Role {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof Role)) {
+        if (!(o instanceof Tag)) {
             return false;
         }
-        Role role = (Role) o;
-        return Objects.equals(id, role.id) && Objects.equals(name, role.name);
+        Tag tag = (Tag) o;
+        return Objects.equals(id, tag.id) && Objects.equals(name, tag.name);
     }
 
     @Override
@@ -75,4 +75,5 @@ public class Role {
             ", name='" + getName() + "'" +
             "}";
     }
+
 }
