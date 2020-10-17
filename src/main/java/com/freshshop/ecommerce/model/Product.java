@@ -12,7 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "products", schema = "freshshop")
@@ -22,29 +28,35 @@ public class Product {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "id")
+    @Column(name = "sku")
     private String sku;
 
-    @Column(name = "id")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "id")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_status_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private ProductStatus productStatus;
 
-    @Column(name = "id")
+    @Column(name = "regular_price")
     private BigDecimal regularPrice;
 
-    @Column(name = "id")
+    @Column(name = "discount_price")
     private BigDecimal discountPrice;
 
-    @Column(name = "id")
+    @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "id")
+    @Column(name = "taxable")
     private boolean taxable;
+
+    @Column(name = "image")
+    private String image;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_categories", schema = "freshshop",
@@ -58,19 +70,23 @@ public class Product {
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags = new HashSet<>();
 
-
+    
     public Product() {
     }
 
-    public Product(Long id, String sku, String name, String description, BigDecimal regularPrice, BigDecimal discountPrice, Integer quantity, boolean taxable) {
+    public Product(Long id, String sku, String name, String description, ProductStatus productStatus, BigDecimal regularPrice, BigDecimal discountPrice, Integer quantity, boolean taxable, String image, Set<Category> categories, Set<Tag> tags) {
         this.id = id;
         this.sku = sku;
         this.name = name;
         this.description = description;
+        this.productStatus = productStatus;
         this.regularPrice = regularPrice;
         this.discountPrice = discountPrice;
         this.quantity = quantity;
         this.taxable = taxable;
+        this.image = image;
+        this.categories = categories;
+        this.tags = tags;
     }
 
     public Long getId() {
@@ -149,6 +165,30 @@ public class Product {
         this.taxable = taxable;
     }
 
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Set<Category> getCategories() {
+        return this.categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Set<Tag> getTags() {
+        return this.tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
     public Product id(Long id) {
         this.id = id;
         return this;
@@ -194,6 +234,21 @@ public class Product {
         return this;
     }
 
+    public Product image(String image) {
+        this.image = image;
+        return this;
+    }
+
+    public Product categories(Set<Category> categories) {
+        this.categories = categories;
+        return this;
+    }
+
+    public Product tags(Set<Tag> tags) {
+        this.tags = tags;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -202,12 +257,12 @@ public class Product {
             return false;
         }
         Product product = (Product) o;
-        return Objects.equals(id, product.id) && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(productStatus, product.productStatus) && Objects.equals(regularPrice, product.regularPrice) && Objects.equals(discountPrice, product.discountPrice) && Objects.equals(quantity, product.quantity) && taxable == product.taxable;
+        return Objects.equals(id, product.id) && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(productStatus, product.productStatus) && Objects.equals(regularPrice, product.regularPrice) && Objects.equals(discountPrice, product.discountPrice) && Objects.equals(quantity, product.quantity) && taxable == product.taxable && Objects.equals(image, product.image) && Objects.equals(categories, product.categories) && Objects.equals(tags, product.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, sku, name, description, productStatus, regularPrice, discountPrice, quantity, taxable);
+        return Objects.hash(id, sku, name, description, productStatus, regularPrice, discountPrice, quantity, taxable, image, categories, tags);
     }
 
     @Override
@@ -222,7 +277,11 @@ public class Product {
             ", discountPrice='" + getDiscountPrice() + "'" +
             ", quantity='" + getQuantity() + "'" +
             ", taxable='" + isTaxable() + "'" +
+            ", image='" + getImage() + "'" +
+            ", categories='" + getCategories() + "'" +
+            ", tags='" + getTags() + "'" +
             "}";
     }
+
 
 }
