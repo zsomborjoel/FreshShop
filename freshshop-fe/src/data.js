@@ -1,8 +1,8 @@
 export const storeProducts = [
     {
         id: 1,
-        title: "Onion",
-        img: "img/product-1.png",
+        title: "Tomato",
+        img: "img/tomato.jpg",
         price: 10,
         company: "FreshShop",
         info: "",
@@ -13,7 +13,7 @@ export const storeProducts = [
     {
         id: 1,
         title: "Paprika",
-        img: "img/product-2.png",
+        img: "img/paprika.jpg",
         price: 15,
         company: "FreshShop",
         info: "",
