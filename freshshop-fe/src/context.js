@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { storeProducts } from './data'
+import { storeProducts, detailProduct } from './data'
 
 // React context api
 const ProductContext = React.createContext();
@@ -8,7 +8,8 @@ const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
     state = {
-        products: []
+        products: [],
+        detailProduct: detailProduct
     };
     componentDidMount() {
         // copies of values not referencing
@@ -18,8 +19,8 @@ class ProductProvider extends Component {
     setProducts = () => {
         let tempProducts = [];
         storeProducts.forEach(item => {
-            const signleItem = {...item};
-            tempProducts = [...tempProducts,signleItem];
+            const singleItem = {...item};
+            tempProducts = [...tempProducts,singleItem];
 
         })
         this.setState(() => {
