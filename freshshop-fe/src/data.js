@@ -5,18 +5,18 @@ export const storeProducts = [
         img: "img/tomato.jpg",
         price: 10,
         company: "FreshShop",
-        info: "",
+        info: "Yellow",
         inCart: false,
         count: 0,
         total: 0
     },
     {
-        id: 1,
+        id: 2,
         title: "Paprika",
         img: "img/paprika.jpg",
         price: 15,
         company: "FreshShop",
-        info: "",
+        info: "Red",
         inCart: false,
         count: 0,
         total: 0
