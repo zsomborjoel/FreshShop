@@ -46,8 +46,14 @@ class Details extends Component {
                                     {/* buttons */}
                                     <div>
                                         <Link to="/">
-                                            <ButtonCartContainer>
-                                                back to products
+                                            <ButtonCartContainer 
+                                                cart
+                                                disabled={inCart ? true : false}
+                                                onClick={()=>(
+                                                    value.addToCart(id)
+                                                )}
+                                            >
+                                                {inCart ? "inCart" : "add to cart"}
                                             </ButtonCartContainer>
                                         </Link>
                                     </div>
