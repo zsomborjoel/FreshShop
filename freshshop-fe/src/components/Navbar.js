@@ -12,9 +12,11 @@ class Navbar extends Component {
                 </Link>
                 <ul className="ul.navbar-nav.align-items-center">
                     <li className="nav-item active ml-5">
+                    <Link to='/'>
                     <ButtonProductContainer>
                         products
                     </ButtonProductContainer>
+                    </Link>
                     </li>
                 </ul>
                 <Link to="/cart" className="ml-auto">
