@@ -12,8 +12,8 @@ class ProductProvider extends Component {
         products: [],
         detailProduct: detailProduct,
         cart: [],
-        modelOpen: true,
-        modelProduct: detailProduct
+        modalOpen: true,
+        modalProduct: detailProduct
     };
     componentDidMount() {
         // copies of values not referencing
@@ -54,21 +54,23 @@ class ProductProvider extends Component {
             return { products: tempProducts, cart: [...this.state.cart, product] };
         }, () => { console.log(this.state) })
     }
-    openModel = id => {
+    openModal = id => {
         const product = this.getItem(id);
         this.setState(() => {
-            return { modelProduct: product, modelOpen: true }
+            return { modalProduct: product, modalOpen: true }
         })
     }
-    closeModel = () => {
-        return { modelOpen: false}
+    closeModal = () => {
+        return { modalOpen: false}
     }
     render() {
         return (
             <ProductContext.Provider value={{
                 ...this.state,
                 handleDetail: this.handleDetail,
-                addToCart: this.addToCart
+                addToCart: this.addToCart,
+                openModal: this.openModal,
+                closeModal: this.closeModal
             }}>
                 {this.props.children}            
             </ProductContext.Provider>

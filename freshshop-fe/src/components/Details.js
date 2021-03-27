@@ -49,9 +49,10 @@ class Details extends Component {
                                             <ButtonCartContainer 
                                                 cart
                                                 disabled={inCart ? true : false}
-                                                onClick={()=>(
-                                                    value.addToCart(id)
-                                                )}
+                                                onClick={()=> {
+                                                    value.addToCart(id);
+                                                    value.openModal(id);
+                                                }}
                                             >
                                                 {inCart ? "inCart" : "add to cart"}
                                             </ButtonCartContainer>
