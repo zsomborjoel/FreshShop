@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Cart from './components/Cart';
 import { storeProducts, detailProduct } from './data'
 
 // React context api
@@ -9,7 +10,10 @@ const ProductContext = React.createContext();
 class ProductProvider extends Component {
     state = {
         products: [],
-        detailProduct: detailProduct
+        detailProduct: detailProduct,
+        cart: [],
+        modelOpen: true,
+        modelProduct: detailProduct
     };
     componentDidMount() {
         // copies of values not referencing
@@ -38,7 +42,26 @@ class ProductProvider extends Component {
         console.log('Hello from detail');
     }
     addToCart = (id) => {
-        console.log(`Hello from add to cart.id is ${id}}`);
+        let tempProducts = [...this.state.products];
+        const index = tempProducts.indexOf(this.getItem(id));
+        const product = tempProducts[index];
+        product.inCart = true;
+        product.count = 1;
+        const price = product.price;
+        product.total = price;
+        // add current items back to same cart
+        this.setState(() => {
+            return { products: tempProducts, cart: [...this.state.cart, product] };
+        }, () => { console.log(this.state) })
+    }
+    openModel = id => {
+        const product = this.getItem(id);
+        this.setState(() => {
+            return { modelProduct: product, modelOpen: true }
+        })
+    }
+    closeModel = () => {
+        return { modelOpen: false}
     }
     render() {
         return (
