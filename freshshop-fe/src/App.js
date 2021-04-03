@@ -7,7 +7,7 @@ import Cart from './components/Cart';
 import ProductList from './components/ProductList';
 import Details from './components/Details';
 import Default from './components/Default';
-import { Modal } from 'bootstrap';
+import Modal from './components/Modal';
 
 function App() {
   return (

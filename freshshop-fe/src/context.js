@@ -61,7 +61,9 @@ class ProductProvider extends Component {
         })
     }
     closeModal = () => {
-        return { modalOpen: false}
+        this.setState(() => {
+            return { modalOpen: false }
+        })
     }
     render() {
         return (
