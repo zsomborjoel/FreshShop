@@ -29,6 +29,11 @@ class Modal extends Component {
                                                     continue shopping
                                                 </ButtonProductContainer>
                                             </Link>
+                                            <Link to='/cart'>
+                                                <ButtonProductContainer onClick={()=>closeModal()}>
+                                                    go to cart
+                                                </ButtonProductContainer>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
