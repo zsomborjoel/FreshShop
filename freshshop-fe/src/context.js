@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Cart from './components/Cart';
+import Cart from './components/Cart/Cart';
 import { storeProducts, detailProduct } from './data'
 
 // React context api
@@ -11,7 +11,7 @@ class ProductProvider extends Component {
     state = {
         products: [],
         detailProduct: detailProduct,
-        cart: [],
+        cart: storeProducts,
         modalOpen: false,
         modalProduct: detailProduct,
         cartSubTotal: 0,
