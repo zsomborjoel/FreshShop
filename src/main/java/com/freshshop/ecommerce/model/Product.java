@@ -1,6 +1,5 @@
 package com.freshshop.ecommerce.model;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -28,14 +27,14 @@ public class Product {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "sku")
-    private String sku;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "img")
+    private String img;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "price")
+    private Integer price;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_status_id", nullable = false)
@@ -43,20 +42,20 @@ public class Product {
     @JsonIgnore
     private ProductStatus productStatus;
 
-    @Column(name = "regular_price")
-    private BigDecimal regularPrice;
+    @Column(name = "company")
+    private String company;
 
-    @Column(name = "discount_price")
-    private BigDecimal discountPrice;
+    @Column(name ="info")
+    private String info;
 
-    @Column(name = "quantity")
-    private Integer quantity;
+    @Column(name = "inCart")
+    private Boolean inCart;
 
-    @Column(name = "taxable")
-    private boolean taxable;
+    @Column(name = "count")
+    private Integer count;
 
-    @Column(name = "image")
-    private String image;
+    @Column(name = "total")
+    private Integer total;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "product_categories", schema = "freshshop",
@@ -70,21 +69,20 @@ public class Product {
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags = new HashSet<>();
 
-    
     public Product() {
     }
 
-    public Product(Long id, String sku, String name, String description, ProductStatus productStatus, BigDecimal regularPrice, BigDecimal discountPrice, Integer quantity, boolean taxable, String image, Set<Category> categories, Set<Tag> tags) {
+    public Product(Long id, String title, String img, Integer price, ProductStatus productStatus, String company, String info, Boolean inCart, Integer count, Integer total, Set<Category> categories, Set<Tag> tags) {
         this.id = id;
-        this.sku = sku;
-        this.name = name;
-        this.description = description;
+        this.title = title;
+        this.img = img;
+        this.price = price;
         this.productStatus = productStatus;
-        this.regularPrice = regularPrice;
-        this.discountPrice = discountPrice;
-        this.quantity = quantity;
-        this.taxable = taxable;
-        this.image = image;
+        this.company = company;
+        this.info = info;
+        this.inCart = inCart;
+        this.count = count;
+        this.total = total;
         this.categories = categories;
         this.tags = tags;
     }
@@ -97,28 +95,28 @@ public class Product {
         this.id = id;
     }
 
-    public String getSku() {
-        return this.sku;
+    public String getTitle() {
+        return this.title;
     }
 
-    public void setSku(String sku) {
-        this.sku = sku;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getName() {
-        return this.name;
+    public String getImg() {
+        return this.img;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public String getDescription() {
-        return this.description;
+    public Integer getPrice() {
+        return this.price;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public ProductStatus getProductStatus() {
@@ -129,48 +127,48 @@ public class Product {
         this.productStatus = productStatus;
     }
 
-    public BigDecimal getRegularPrice() {
-        return this.regularPrice;
+    public String getCompany() {
+        return this.company;
     }
 
-    public void setRegularPrice(BigDecimal regularPrice) {
-        this.regularPrice = regularPrice;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public BigDecimal getDiscountPrice() {
-        return this.discountPrice;
+    public String getInfo() {
+        return this.info;
     }
 
-    public void setDiscountPrice(BigDecimal discountPrice) {
-        this.discountPrice = discountPrice;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public Integer getQuantity() {
-        return this.quantity;
+    public Boolean isInCart() {
+        return this.inCart;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public Boolean getInCart() {
+        return this.inCart;
     }
 
-    public boolean isTaxable() {
-        return this.taxable;
+    public void setInCart(Boolean inCart) {
+        this.inCart = inCart;
     }
 
-    public boolean getTaxable() {
-        return this.taxable;
+    public Integer getCount() {
+        return this.count;
     }
 
-    public void setTaxable(boolean taxable) {
-        this.taxable = taxable;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
-    public String getImage() {
-        return this.image;
+    public Integer getTotal() {
+        return this.total;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 
     public Set<Category> getCategories() {
@@ -190,62 +188,62 @@ public class Product {
     }
 
     public Product id(Long id) {
-        this.id = id;
+        setId(id);
         return this;
     }
 
-    public Product sku(String sku) {
-        this.sku = sku;
+    public Product title(String title) {
+        setTitle(title);
         return this;
     }
 
-    public Product name(String name) {
-        this.name = name;
+    public Product img(String img) {
+        setImg(img);
         return this;
     }
 
-    public Product description(String description) {
-        this.description = description;
+    public Product price(Integer price) {
+        setPrice(price);
         return this;
     }
 
     public Product productStatus(ProductStatus productStatus) {
-        this.productStatus = productStatus;
+        setProductStatus(productStatus);
         return this;
     }
 
-    public Product regularPrice(BigDecimal regularPrice) {
-        this.regularPrice = regularPrice;
+    public Product company(String company) {
+        setCompany(company);
         return this;
     }
 
-    public Product discountPrice(BigDecimal discountPrice) {
-        this.discountPrice = discountPrice;
+    public Product info(String info) {
+        setInfo(info);
         return this;
     }
 
-    public Product quantity(Integer quantity) {
-        this.quantity = quantity;
+    public Product inCart(Boolean inCart) {
+        setInCart(inCart);
         return this;
     }
 
-    public Product taxable(boolean taxable) {
-        this.taxable = taxable;
+    public Product count(Integer count) {
+        setCount(count);
         return this;
     }
 
-    public Product image(String image) {
-        this.image = image;
+    public Product total(Integer total) {
+        setTotal(total);
         return this;
     }
 
     public Product categories(Set<Category> categories) {
-        this.categories = categories;
+        setCategories(categories);
         return this;
     }
 
     public Product tags(Set<Tag> tags) {
-        this.tags = tags;
+        setTags(tags);
         return this;
     }
 
@@ -257,31 +255,30 @@ public class Product {
             return false;
         }
         Product product = (Product) o;
-        return Objects.equals(id, product.id) && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(productStatus, product.productStatus) && Objects.equals(regularPrice, product.regularPrice) && Objects.equals(discountPrice, product.discountPrice) && Objects.equals(quantity, product.quantity) && taxable == product.taxable && Objects.equals(image, product.image) && Objects.equals(categories, product.categories) && Objects.equals(tags, product.tags);
+        return Objects.equals(id, product.id) && Objects.equals(title, product.title) && Objects.equals(img, product.img) && Objects.equals(price, product.price) && Objects.equals(productStatus, product.productStatus) && Objects.equals(company, product.company) && Objects.equals(info, product.info) && Objects.equals(inCart, product.inCart) && Objects.equals(count, product.count) && Objects.equals(total, product.total) && Objects.equals(categories, product.categories) && Objects.equals(tags, product.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, sku, name, description, productStatus, regularPrice, discountPrice, quantity, taxable, image, categories, tags);
+        return Objects.hash(id, title, img, price, productStatus, company, info, inCart, count, total, categories, tags);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", sku='" + getSku() + "'" +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", img='" + getImg() + "'" +
+            ", price='" + getPrice() + "'" +
             ", productStatus='" + getProductStatus() + "'" +
-            ", regularPrice='" + getRegularPrice() + "'" +
-            ", discountPrice='" + getDiscountPrice() + "'" +
-            ", quantity='" + getQuantity() + "'" +
-            ", taxable='" + isTaxable() + "'" +
-            ", image='" + getImage() + "'" +
+            ", company='" + getCompany() + "'" +
+            ", info='" + getInfo() + "'" +
+            ", inCart='" + isInCart() + "'" +
+            ", count='" + getCount() + "'" +
+            ", total='" + getTotal() + "'" +
             ", categories='" + getCategories() + "'" +
             ", tags='" + getTags() + "'" +
             "}";
     }
-
 
 }
