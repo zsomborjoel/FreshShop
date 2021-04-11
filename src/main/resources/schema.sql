@@ -71,15 +71,16 @@ create table freshshop.categories (
    constraint pk_categories primary key (id)
 )   ;
 create table freshshop.products (
-   id                serial                   not null      ,
-   sku               varchar(255)             not null      ,
-   name              varchar(255)             not null      ,
-   description       text                                   ,
-   product_status_id integer                  not null      ,
-   regular_price     numeric                   default 0    ,
-   discount_price    numeric                   default 0    ,
-   quantity          integer                   default 0    ,
-   taxable           bool                      default false,
+   id                   serial                  not null      ,
+   title                varchar(255)            not null      ,
+   img                  varchar(255)            not null      ,
+   price                integer                 default 0     ,
+   product_status_id    integer                 not null      ,
+   company              varchar(255)            not null      ,
+   info                 varchar(255)            not null      ,
+   inCart               bool                   default false  ,
+   count                integer                default 0      ,
+   total                integer                default 0      ,
    inserted_at       timestamp with time zone default current_timestamp       ,
    updated_at        timestamp with time zone default current_timestamp       ,
    constraint pk_products primary key (id)
