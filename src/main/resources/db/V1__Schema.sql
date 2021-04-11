@@ -186,7 +186,7 @@ alter table freshshop.sales_orders add constraint fk_coupon_order
     references freshshop.coupons (id) ;
 alter table freshshop.product_tags add constraint fk_products_product_tags 
     foreign key (product_id)
-    references freshshop.roducts (id) ;
+    references freshshop.products (id) ;
 alter table freshshop.product_tags add constraint fk_tags_product_tags 
     foreign key (tag_id)
     references freshshop.tags (id) ;
@@ -211,9 +211,9 @@ alter table freshshop.products add constraint fk_product_statuses_product
 alter table freshshop.order_products add constraint fk_sales_orders_order_products 
     foreign key (order_id)
     references freshshop.sales_orders (id) ;
-alter table cc_transactions add constraint fk_sales_order_cc_transaction 
+alter table freshshop.cc_transactions add constraint fk_sales_order_cc_transaction 
     foreign key (order_id)
-    references sales_orders (id) ;
+    references freshshop.sales_orders (id) ;
 alter table freshshop.product_categories add constraint fk_product_product_category 
     foreign key (product_id)
     references freshshop.products (id) ;

@@ -30,22 +30,22 @@ public class OrderProduct {
     @JsonIgnore
     private Order order;
 
-    @Column(name = "id")
+    @Column(name = "stock_keeping_unit")
     private String stockKeepingUnit;
 
-    @Column(name = "id")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "id")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "id")
+    @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "id")
+    @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "id")
+    @Column(name = "subtotal")
     private BigDecimal subtotal;
 
 
