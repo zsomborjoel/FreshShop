@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Cart from './components/Cart/Cart';
 import { storeProducts, detailProduct } from './data'
 
 // React context api
