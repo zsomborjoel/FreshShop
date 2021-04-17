@@ -20,7 +20,7 @@ export const ButtonCartContainer = styled.button`
     }
 `;
 
-export const ButtonProductContainer = styled.button`
+export const DefaultNavButtonContainer = styled.button`
     font-size: 1.8rem;
     background: transparent;
     color: var(--mainGreen);
