@@ -7,39 +7,39 @@ class Navbar extends Component {
     render() {
         return (
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <div class="collapse navbar-collapse" id="navbarsExample04">
+                <div class="collapse navbar-collapse">
                     <Link to='/'>
                     <img src={logo} alt="store" className="navbar-brand"/>
                     </Link>
-                <ul class="navbar-nav mr-auto">
-                    <li className="nav-item ml-5">
-                        <Link to='/'>
+                    <ul class="navbar-nav mr-auto">
+                        <li className="nav-item ml-5">
+                            <Link to='/'>
+                                <DefaultNavButtonContainer>
+                                    products
+                                </DefaultNavButtonContainer>
+                            </Link>
+                        </li>
+                        <li className="nav-item ml-5">
+                            <Link to='/info'>
+                                <DefaultNavButtonContainer>
+                                    info
+                                </DefaultNavButtonContainer>
+                            </Link>
+                        </li>
+                    </ul>
+                        <Link to="/cart" className="mr-5">
                             <DefaultNavButtonContainer>
-                                products
+                            login
                             </DefaultNavButtonContainer>
                         </Link>
-                    </li>
-                    <li className="nav-item ml-5">
-                        <Link to='/info'>
-                            <DefaultNavButtonContainer>
-                                info
-                            </DefaultNavButtonContainer>
+                        <Link to="/cart">
+                            <ButtonCartContainer>
+                                <span className="mr-2">
+                                    <i className="fas fa-cart-plus" />
+                                </span>
+                                my cart
+                            </ButtonCartContainer>
                         </Link>
-                    </li>
-                </ul>
-                    <Link to="/cart" className="mr-5">
-                        <DefaultNavButtonContainer>
-                        login
-                        </DefaultNavButtonContainer>
-                    </Link>
-                    <Link to="/cart">
-                        <ButtonCartContainer>
-                            <span className="mr-2">
-                                <i className="fas fa-cart-plus" />
-                            </span>
-                            my cart
-                        </ButtonCartContainer>
-                    </Link>
                 </div>
             </nav>  
         );
