@@ -27,9 +27,14 @@ class Navbar extends Component {
                             </Link>
                         </li>
                     </ul>
-                        <Link to="/cart" className="mr-5">
+                        <Link to="/login" className="mr-5">
                             <DefaultNavButtonContainer>
                             login
+                            </DefaultNavButtonContainer>
+                        </Link>
+                        <Link to="/login" className="mr-5">
+                            <DefaultNavButtonContainer>
+                            sign up
                             </DefaultNavButtonContainer>
                         </Link>
                         <Link to="/cart">
